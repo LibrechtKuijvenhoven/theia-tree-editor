@@ -1,0 +1,16 @@
+{
+  "extends": "../../configs/base.tsconfig",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib",
+    "baseUrl": ".",
+    "paths": {
+      "@eclipse-emfcloud/theia-tree-editor": [
+        "theia-tree-editor/src/*"
+      ]
+    }
+  },
+  "include": [
+    "src"
+  ]
+}

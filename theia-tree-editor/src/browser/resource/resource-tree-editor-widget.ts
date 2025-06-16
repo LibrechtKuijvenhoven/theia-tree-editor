@@ -12,7 +12,7 @@ import { Saveable } from '@theia/core/lib/browser';
 import { DefaultResourceProvider, ILogger, Resource } from '@theia/core/lib/common';
 import { EditorPreferences } from '@theia/editor/lib/browser';
 import { WorkspaceService } from '@theia/workspace/lib/browser/workspace-service';
-import { postConstruct } from 'inversify';
+import { postConstruct } from '@theia/core/shared/inversify';
 
 import { DetailFormWidget } from '../detail-form-widget';
 import { TreeEditor } from '../interfaces';

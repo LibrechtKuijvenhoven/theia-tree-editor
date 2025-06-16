@@ -149,6 +149,7 @@ export class MasterTreeWidget extends TreeWidget {
                 onClick: addHandler
             };
             const renderOptions: RenderContextMenuOptions = {
+                context: event.currentTarget,
                 menuPath: TreeContextMenu.ADD_MENU,
                 anchor: treeAnchor
             };

@@ -38,6 +38,8 @@
     "For more information, see https://github.com/electron/electron/blob/master/docs/tutorial/testing-on-headless-ci.md."
   ],
   "workspaces": [
-    "theia-tree-editor"
+    "theia-tree-editor",
+    "example/browser-app",
+    "example/tree-editor-example"
   ]
 }

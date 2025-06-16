@@ -8,13 +8,13 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  *******************************************************************************/
-import { Title } from '@phosphor/widgets';
+import { Title } from '@theia/core/shared/@lumino/widgets';
 import { BaseWidget, Message, Saveable, SaveableSource, SplitPanel, Widget } from '@theia/core/lib/browser';
 import { Emitter, Event, ILogger } from '@theia/core/lib/common';
 import { WorkspaceService } from '@theia/workspace/lib/browser/workspace-service';
-import { injectable, postConstruct } from 'inversify';
+import { injectable, postConstruct } from '@theia/core/shared/inversify';
 import { debounce, isEqual } from 'lodash';
-import React from 'react';
+import React from '@theia/core/shared/react';
 import { createRoot } from 'react-dom/client';
 
 import { DetailFormWidget } from './detail-form-widget';
@@ -31,6 +31,10 @@ export abstract class BaseTreeEditorWidget extends BaseWidget implements Saveabl
     protected readonly onDirtyChangedEmitter = new Emitter<void>();
     get onDirtyChanged(): Event<void> {
         return this.onDirtyChangedEmitter.event;
+    }
+    protected readonly onContentChangedEmitter = new Emitter<void>();
+    get onContentChanged(): Event<void> {
+        return this.onContentChangedEmitter.event;
     }
 
     public selectedNode: TreeEditor.Node;
