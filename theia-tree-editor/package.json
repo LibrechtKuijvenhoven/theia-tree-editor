@@ -1,20 +1,11 @@
 {
-  "name": "@eclipse-emfcloud/theia-tree-editor",
+  "name": "@LibrechtKuijvenhoven/theia-tree-editor",
   "version": "0.6.0",
   "license": "(EPL-2.0 OR MIT)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/eclipse-emfcloud/theia-tree-editor.git"
+    "url": "https://github.com/LibrechtKuijvenhoven/theia-tree-editor.git"
   },
-  "contributors": [
-    {
-      "name": "Eclipse emf.cloud Project",
-      "email": "emfcloud-dev@eclipse.org",
-      "url": "https://projects.eclipse.org/projects/ecd.emfcloud"
-    }
-  ],
-  "homepage": "https://www.eclipse.org/emfcloud/",
-  "bugs": "https://github.com/eclipse-emfcloud/theia-tree-editor/issues",
   "main": "lib/browser/index.js",
   "typings": "lib/browser/index.d.ts",
   "files": [
@@ -23,19 +14,19 @@
     "style"
   ],
   "devDependencies": {
-    "@jsonforms/core": "^3.1.0",
-    "@jsonforms/react": "^3.1.0",
-    "@jsonforms/vanilla-renderers": "^3.1.0",
+    "@jsonforms/core": "^3.5.0",
+    "@jsonforms/react": "^3.5.0",
+    "@jsonforms/vanilla-renderers": "^3.5.0",
     "rimraf": "^2.6.1",
     "typescript": "^4.2.3"
   },
   "peerDependencies": {
-    "@jsonforms/core": "^3.1.0",
-    "@jsonforms/react": "^3.1.0",
-    "@jsonforms/vanilla-renderers": "^3.1.0",
-    "@theia/core": "^1.37.0",
-    "@theia/editor": "^1.37.0",
-    "@theia/workspace": "^1.37.0",
+    "@jsonforms/core": "^3.5.0",
+    "@jsonforms/react": "^3.5.0",
+    "@jsonforms/vanilla-renderers": "^3.5.0",
+    "@theia/core": "^1.61.0",
+    "@theia/editor": "^1.61.0",
+    "@theia/workspace": "^1.61.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
