@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@eclipse-emfcloud/theia-tree-editor": [
+      "@LibrechtKuijvenhoven/theia-tree-editor": [
         "theia-tree-editor/src/*"
       ]
     }
