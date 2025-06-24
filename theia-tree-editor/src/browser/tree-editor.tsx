@@ -52,6 +52,9 @@ export abstract class SplitTreeEditor extends BaseWidget implements Saveable, Sa
         this.toDispose.pushAll([
             this.treeWidget.onSelectionChange(n => {
                 this.selectedNode = n[0];
+                if (this.selectedNode) {
+                    this.dataWidget.updateTreeSelection(this.selectedNode);
+                }
                 this.update();
             }),
             this.dataWidget.onDataChange(
