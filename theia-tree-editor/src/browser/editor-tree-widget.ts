@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2024 Librecht Kuijvenhove or YourName.
+ * Copyright (c) 2024 Librecht Kuijvenhoven.
  * Copyright (c) 2019-2020 EclipseSource and others (original inspiration).
  *
  * This program and the accompanying materials are made available under the

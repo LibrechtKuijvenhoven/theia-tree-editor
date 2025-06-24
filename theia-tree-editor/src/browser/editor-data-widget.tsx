@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2024 Librecht Kuijvenhove or YourName.
+ * Copyright (c) 2024 Librecht Kuijvenhoven.
  * Copyright (c) 2019-2020 EclipseSource and others (original inspiration).
  *
  * This program and the accompanying materials are made available under the
@@ -16,7 +16,7 @@ import { Emitter } from '@theia/core/lib/common';
 import { ReactWidget } from '@theia/core/lib/browser';
 import { injectable } from '@theia/core/shared/inversify';
 import * as React from '@theia/core/shared/react';
-import { TreeEditorNode } from './tree-editor';
+import { TreeEditorNode } from './types';
 
 export type matchNode = (node: Readonly<TreeEditorNode>) => boolean;
 export type renderFunc = () => React.ReactNode;

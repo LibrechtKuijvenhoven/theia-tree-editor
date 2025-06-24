@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2024 Librecht Kuijvenhove or YourName.
+ * Copyright (c) 2024 Librecht Kuijvenhoven.
  * Copyright (c) 2019-2020 EclipseSource and others (original inspiration).
  *
  * This program and the accompanying materials are made available under the
@@ -12,23 +12,13 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  *******************************************************************************/
-import {
-    BaseWidget,
-    CompositeTreeNode,
-    DecoratedTreeNode,
-    ExpandableTreeNode,
-    Message,
-    Saveable,
-    SaveableSource,
-    SelectableTreeNode,
-    SplitPanel,
-    Widget
-} from '@theia/core/lib/browser';
+import { BaseWidget, Message, Saveable, SaveableSource, SplitPanel, Widget } from '@theia/core/lib/browser';
 import { Emitter } from '@theia/core/lib/common';
 import { injectable } from '@theia/core/shared/inversify';
-import { isEqual } from 'lodash';
+import { isEqual, debounce } from 'lodash';
 import { EditorDataWidget } from './editor-data-widget';
 import { EditorTreeWidget } from './editor-tree-widget';
+import { TreeEditorNode } from './types';
 
 import '../../styles/editor.css';
 
@@ -36,25 +26,6 @@ const TreeEditorClass = 'split-tree-editor';
 const TreeEditorPanelClass = 'split-tree-editor-panel';
 const TreeEditorTreeClass = 'split-tree-editor-tree';
 const TreeEditorDataClass = 'split-tree-editor-data';
-
-export type TreeEditorNode = TreeLeaf | TreeNode;
-
-export interface TreeNode extends CompositeTreeNode, ExpandableTreeNode, TreeLeaf {}
-export interface TreeLeaf extends SelectableTreeNode, DecoratedTreeNode {
-    data: any;
-}
-export namespace TreeEditorNode {
-    export type Root = CompositeTreeNode;
-    export function isRoot(node: unknown): node is Root {
-        return CompositeTreeNode.is(node);
-    }
-    export function isNode(node: unknown): node is TreeEditorNode {
-        return CompositeTreeNode.is(node) && SelectableTreeNode.is(node) && isLeaf(node);
-    }
-    export function isLeaf(node: unknown): node is TreeEditorNode {
-        return SelectableTreeNode.is(node) && DecoratedTreeNode.is(node) && 'data' in node;
-    }
-}
 
 @injectable()
 export abstract class SplitTreeEditor extends BaseWidget implements Saveable, SaveableSource {
@@ -83,12 +54,15 @@ export abstract class SplitTreeEditor extends BaseWidget implements Saveable, Sa
                 this.selectedNode = n[0];
                 this.update();
             }),
-            this.dataWidget.onDataChange(data => {
-                if (!this.selectedNode || isEqual(data, this.selectedNode.data)) {
-                    return;
-                }
-                this.onDataWidgetChange(data, this.selectedNode);
-            })
+            this.dataWidget.onDataChange(
+                debounce(data => {
+                    if (!this.selectedNode || isEqual(data, this.selectedNode.data)) {
+                        return;
+                    }
+                    this.onDataWidgetChange(data, this.selectedNode);
+                }),
+                250
+            )
         ]);
     }
     protected instaniateSplitPanel(): SplitPanel {
