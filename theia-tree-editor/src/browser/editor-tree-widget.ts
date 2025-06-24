@@ -30,11 +30,9 @@ export abstract class EditorTreeWidget extends TreeWidget {
         @inject(TreeProps) props: TreeProps,
         @inject(TreeModel) model: TreeModel,
         @inject(ContextMenuRenderer)
-        contextMenuRenderer: ContextMenuRenderer,
-        id: string
+        contextMenuRenderer: ContextMenuRenderer
     ) {
         super(props, model, contextMenuRenderer);
-        this.id = id;
         this.toDispose.pushAll([
             this.model.onSelectionChanged(n => {
                 this.onSelectionChangeEmitter.fire(n as readonly Readonly<TreeEditorNode>[]);

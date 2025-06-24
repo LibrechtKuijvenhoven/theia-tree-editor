@@ -20,7 +20,7 @@ export declare abstract class EditorTreeWidget extends TreeWidget {
     protected readonly onDataChange: import("vscode-jsonrpc/lib/common/events").Event<void>;
     private onSelectionChangeEmitter;
     readonly onSelectionChange: import("vscode-jsonrpc/lib/common/events").Event<readonly Readonly<TreeEditorNode>[]>;
-    constructor(props: TreeProps, model: TreeModel, contextMenuRenderer: ContextMenuRenderer, id: string);
+    constructor(props: TreeProps, model: TreeModel, contextMenuRenderer: ContextMenuRenderer);
     set data(data: any);
     updateNodeData(node: TreeEditorNode, data: any): void;
 }

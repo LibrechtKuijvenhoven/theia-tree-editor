@@ -31,13 +31,12 @@ const browser_1 = require("@theia/core/lib/browser");
 const inversify_1 = require("@theia/core/shared/inversify");
 const vscode_languageserver_protocol_1 = require("@theia/core/shared/vscode-languageserver-protocol");
 let EditorTreeWidget = class EditorTreeWidget extends browser_1.TreeWidget {
-    constructor(props, model, contextMenuRenderer, id) {
+    constructor(props, model, contextMenuRenderer) {
         super(props, model, contextMenuRenderer);
         this.onDataChangeEmitter = new vscode_languageserver_protocol_1.Emitter();
         this.onDataChange = this.onDataChangeEmitter.event;
         this.onSelectionChangeEmitter = new vscode_languageserver_protocol_1.Emitter();
         this.onSelectionChange = this.onSelectionChangeEmitter.event;
-        this.id = id;
         this.toDispose.pushAll([
             this.model.onSelectionChanged(n => {
                 this.onSelectionChangeEmitter.fire(n);
@@ -64,7 +63,7 @@ EditorTreeWidget = __decorate([
     __param(0, (0, inversify_1.inject)(browser_1.TreeProps)),
     __param(1, (0, inversify_1.inject)(browser_1.TreeModel)),
     __param(2, (0, inversify_1.inject)(browser_1.ContextMenuRenderer)),
-    __metadata("design:paramtypes", [Object, Object, browser_1.ContextMenuRenderer, String])
+    __metadata("design:paramtypes", [Object, Object, browser_1.ContextMenuRenderer])
 ], EditorTreeWidget);
 exports.EditorTreeWidget = EditorTreeWidget;
 //# sourceMappingURL=editor-tree-widget.js.map
