@@ -53,6 +53,9 @@ let SplitTreeEditor = class SplitTreeEditor extends browser_1.BaseWidget {
         this.toDispose.pushAll([
             this.treeWidget.onSelectionChange(n => {
                 this.selectedNode = n[0];
+                if (this.selectedNode) {
+                    this.dataWidget.updateTreeSelection(this.selectedNode);
+                }
                 this.update();
             }),
             this.dataWidget.onDataChange((0, lodash_1.debounce)(data => {
