@@ -1,3 +1,4 @@
+/// <reference types="react" />
 /********************************************************************************
  * Copyright (c) 2024 Librecht Kuijvenhoven.
  * Copyright (c) 2019-2020 EclipseSource and others (original inspiration).
@@ -12,8 +13,9 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  *******************************************************************************/
-import { ContextMenuRenderer, TreeModel, TreeProps, TreeWidget } from '@theia/core/lib/browser';
+import { ContextMenuRenderer, NodeProps, TreeModel, TreeNode, TreeProps, TreeWidget } from '@theia/core/lib/browser';
 import { TreeEditorNode } from './types';
+import * as React from '@theia/core/shared/react';
 export declare abstract class EditorTreeWidget extends TreeWidget {
     protected _data: any;
     private onDataChangeEmitter;
@@ -23,5 +25,6 @@ export declare abstract class EditorTreeWidget extends TreeWidget {
     constructor(props: TreeProps, model: TreeModel, contextMenuRenderer: ContextMenuRenderer);
     set data(data: any);
     updateNodeData(node: TreeEditorNode, data: any): void;
+    protected renderIcon(node: TreeNode, props: NodeProps): React.ReactNode;
 }
 //# sourceMappingURL=editor-tree-widget.d.ts.map

@@ -12,10 +12,11 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  *******************************************************************************/
-import { ContextMenuRenderer, TreeModel, TreeProps, TreeWidget } from '@theia/core/lib/browser';
+import { ContextMenuRenderer, NodeProps, TreeModel, TreeNode, TreeProps, TreeWidget } from '@theia/core/lib/browser';
 import { inject, injectable } from '@theia/core/shared/inversify';
 import { Emitter } from '@theia/core/shared/vscode-languageserver-protocol';
 import { TreeEditorNode } from './types';
+import * as React from '@theia/core/shared/react';
 
 @injectable()
 export abstract class EditorTreeWidget extends TreeWidget {
@@ -53,5 +54,9 @@ export abstract class EditorTreeWidget extends TreeWidget {
             return;
         }
         this.model.refresh();
+    }
+    protected override renderIcon(node: TreeNode, props: NodeProps): React.ReactNode {
+        const icon = this.toNodeIcon(node);
+        return icon ? <div className={icon + ' default-file-icon file-icon'}></div> : undefined;
     }
 }
