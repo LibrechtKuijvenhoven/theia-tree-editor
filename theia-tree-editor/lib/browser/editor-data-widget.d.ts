@@ -1,8 +1,22 @@
 /// <reference types="react" />
+/********************************************************************************
+ * Copyright (c) 2024 Librecht Kuijvenhoven.
+ * Copyright (c) 2019-2020 EclipseSource and others (original inspiration).
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * https://www.eclipse.org/legal/epl-2.0, or the MIT License which is
+ * available at https://opensource.org/licenses/MIT.
+ *
+ * This component is a derivative work inspired by the 'DetailFormWidget'
+ * from [Original Project Name or link to its repo, e.g., 'https://github.com/EclipseSource/theia-tree-editor-example'].
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR MIT
+ *******************************************************************************/
 import { Emitter } from '@theia/core/lib/common';
 import { ReactWidget } from '@theia/core/lib/browser';
 import * as React from '@theia/core/shared/react';
-import { TreeEditorNode } from './tree-editor';
+import { TreeEditorNode } from './types';
 export type matchNode = (node: Readonly<TreeEditorNode>) => boolean;
 export type renderFunc = () => React.ReactNode;
 export declare abstract class EditorDataWidget extends ReactWidget {

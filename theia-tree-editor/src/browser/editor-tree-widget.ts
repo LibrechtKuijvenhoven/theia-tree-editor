@@ -15,7 +15,7 @@
 import { ContextMenuRenderer, TreeModel, TreeProps, TreeWidget } from '@theia/core/lib/browser';
 import { inject, injectable } from '@theia/core/shared/inversify';
 import { Emitter } from '@theia/core/shared/vscode-languageserver-protocol';
-import { TreeEditorNode } from './tree-editor';
+import { TreeEditorNode } from './types';
 
 @injectable()
 export abstract class EditorTreeWidget extends TreeWidget {

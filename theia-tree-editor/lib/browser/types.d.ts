@@ -12,16 +12,17 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  *******************************************************************************/
-import { ContextMenuRenderer, TreeModel, TreeProps, TreeWidget } from '@theia/core/lib/browser';
-import { TreeEditorNode } from './types';
-export declare abstract class EditorTreeWidget extends TreeWidget {
-    protected _data: any;
-    private onDataChangeEmitter;
-    protected readonly onDataChange: import("vscode-jsonrpc/lib/common/events").Event<void>;
-    private onSelectionChangeEmitter;
-    readonly onSelectionChange: import("vscode-jsonrpc/lib/common/events").Event<readonly Readonly<TreeEditorNode>[]>;
-    constructor(props: TreeProps, model: TreeModel, contextMenuRenderer: ContextMenuRenderer, id: string);
-    set data(data: any);
-    updateNodeData(node: TreeEditorNode, data: any): void;
+import { CompositeTreeNode, ExpandableTreeNode, SelectableTreeNode, DecoratedTreeNode } from '@theia/core/lib/browser';
+export type TreeEditorNode = EditorTreeLeaf | EditorTreeNode;
+export interface EditorTreeNode extends CompositeTreeNode, ExpandableTreeNode, EditorTreeLeaf {
 }
-//# sourceMappingURL=editor-tree-widget.d.ts.map
+export interface EditorTreeLeaf extends SelectableTreeNode, DecoratedTreeNode {
+    data: any;
+}
+export declare namespace TreeEditorNode {
+    type Root = CompositeTreeNode;
+    function isRoot(node: unknown): node is Root;
+    function isNode(node: unknown): node is EditorTreeNode;
+    function isLeaf(node: unknown): node is EditorTreeLeaf;
+}
+//# sourceMappingURL=types.d.ts.map
