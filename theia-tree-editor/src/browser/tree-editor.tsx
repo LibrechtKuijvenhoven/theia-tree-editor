@@ -64,8 +64,9 @@ export abstract class SplitTreeEditor extends BaseWidget implements Saveable, Sa
                 250
             )
         ]);
+        this.panel = this.instantiateSplitPanel();
     }
-    protected instaniateSplitPanel(): SplitPanel {
+    protected instantiateSplitPanel(): SplitPanel {
         const panel = new SplitPanel();
         panel.addClass(TreeEditorPanelClass);
         panel.addWidget(this.treeWidget);

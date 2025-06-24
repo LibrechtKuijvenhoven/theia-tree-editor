@@ -62,8 +62,9 @@ let SplitTreeEditor = class SplitTreeEditor extends browser_1.BaseWidget {
                 this.onDataWidgetChange(data, this.selectedNode);
             }), 250)
         ]);
+        this.panel = this.instantiateSplitPanel();
     }
-    instaniateSplitPanel() {
+    instantiateSplitPanel() {
         const panel = new browser_1.SplitPanel();
         panel.addClass(TreeEditorPanelClass);
         panel.addWidget(this.treeWidget);

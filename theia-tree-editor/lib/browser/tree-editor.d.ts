@@ -31,7 +31,7 @@ export declare abstract class SplitTreeEditor extends BaseWidget implements Save
     protected readonly onContentChangedEmitter: Emitter<void>;
     readonly onContentChanged: import("@theia/core/lib/common").Event<void>;
     constructor(treeWidget: EditorTreeWidget, dataWidget: EditorDataWidget, widgetId: string);
-    protected instaniateSplitPanel(): SplitPanel;
+    protected instantiateSplitPanel(): SplitPanel;
     protected onAfterAttach(msg: Message): void;
     protected abstract onDataWidgetChange(data: any, node: TreeEditorNode): void;
     get saveable(): Saveable;
