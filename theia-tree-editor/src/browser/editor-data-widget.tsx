@@ -20,6 +20,10 @@ import { TreeEditorNode } from './types';
 
 export type matchNode = (node: Readonly<TreeEditorNode>) => boolean;
 export type renderFunc = () => React.ReactNode;
+export interface DataTester<T extends TreeEditorNode> {
+    test: (node: Readonly<TreeEditorNode>) => node is T;
+    render: (node?: T) => React.ReactNode;
+}
 
 @injectable()
 export abstract class EditorDataWidget extends ReactWidget {

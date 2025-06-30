@@ -19,6 +19,10 @@ import * as React from '@theia/core/shared/react';
 import { TreeEditorNode } from './types';
 export type matchNode = (node: Readonly<TreeEditorNode>) => boolean;
 export type renderFunc = () => React.ReactNode;
+export interface DataTester<T extends TreeEditorNode> {
+    test: (node: Readonly<TreeEditorNode>) => node is T;
+    render: (node?: T) => React.ReactNode;
+}
 export declare abstract class EditorDataWidget extends ReactWidget {
     protected selectedNode: Readonly<TreeEditorNode>;
     updateTreeSelection(selectedNode: Readonly<TreeEditorNode>): void;

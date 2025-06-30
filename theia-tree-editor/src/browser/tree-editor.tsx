@@ -12,10 +12,10 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  *******************************************************************************/
-import { BaseWidget, Message, Saveable, SaveableSource, SplitPanel, Widget } from '@theia/core/lib/browser';
+import { BaseWidget, Message, Saveable, SaveableSource, SplitPanel, ViewContainer, Widget } from '@theia/core/lib/browser';
 import { Emitter } from '@theia/core/lib/common';
 import { injectable } from '@theia/core/shared/inversify';
-import { isEqual, debounce } from 'lodash';
+import { debounce, isEqual } from 'lodash';
 import { EditorDataWidget } from './editor-data-widget';
 import { EditorTreeWidget } from './editor-tree-widget';
 import { TreeEditorNode } from './types';
@@ -33,6 +33,15 @@ export abstract class SplitTreeEditor extends BaseWidget implements Saveable, Sa
     protected selectedNode: TreeEditorNode | undefined;
     protected data: any;
 
+    protected treeWidgetOptions: ViewContainer.Factory.WidgetOptions = {
+        order: 0,
+        canHide: false,
+        initiallyCollapsed: false,
+        initiallyHidden: false,
+        weight: 100,
+        disableDraggingToOtherContainers: true
+    };
+    protected abstract treeHeaderTitle: string;
     public dirty = false;
     protected readonly onDirtyChangedEmitter = new Emitter<void>();
     readonly onDirtyChanged = this.onDirtyChangedEmitter.event;
@@ -42,6 +51,7 @@ export abstract class SplitTreeEditor extends BaseWidget implements Saveable, Sa
     constructor(
         protected readonly treeWidget: EditorTreeWidget,
         protected readonly dataWidget: EditorDataWidget,
+        protected readonly treeWidgetContainerFactory: ViewContainer.Factory,
         readonly widgetId: string
     ) {
         super();
@@ -72,7 +82,15 @@ export abstract class SplitTreeEditor extends BaseWidget implements Saveable, Sa
     protected instantiateSplitPanel(): SplitPanel {
         const panel = new SplitPanel();
         panel.addClass(TreeEditorPanelClass);
-        panel.addWidget(this.treeWidget);
+        console.log('creating view container');
+        const viewContainer = this.treeWidgetContainerFactory({
+            id: `theia-tree-editor--${this.treeWidget.id}`,
+            progressLocationId: 'tree-editor-tree-progress'
+        });
+        viewContainer.setTitleOptions({ label: this.treeHeaderTitle });
+        viewContainer.addWidget(this.treeWidget, this.treeWidgetOptions);
+
+        panel.addWidget(viewContainer);
         panel.addWidget(this.dataWidget);
         panel.setRelativeSizes([2, 5]);
         return panel;

@@ -36,11 +36,20 @@ const TreeEditorPanelClass = 'split-tree-editor-panel';
 const TreeEditorTreeClass = 'split-tree-editor-tree';
 const TreeEditorDataClass = 'split-tree-editor-data';
 let SplitTreeEditor = class SplitTreeEditor extends browser_1.BaseWidget {
-    constructor(treeWidget, dataWidget, widgetId) {
+    constructor(treeWidget, dataWidget, treeWidgetContainerFactory, widgetId) {
         super();
         this.treeWidget = treeWidget;
         this.dataWidget = dataWidget;
+        this.treeWidgetContainerFactory = treeWidgetContainerFactory;
         this.widgetId = widgetId;
+        this.treeWidgetOptions = {
+            order: 0,
+            canHide: false,
+            initiallyCollapsed: false,
+            initiallyHidden: false,
+            weight: 100,
+            disableDraggingToOtherContainers: true
+        };
         this.dirty = false;
         this.onDirtyChangedEmitter = new common_1.Emitter();
         this.onDirtyChanged = this.onDirtyChangedEmitter.event;
@@ -70,7 +79,14 @@ let SplitTreeEditor = class SplitTreeEditor extends browser_1.BaseWidget {
     instantiateSplitPanel() {
         const panel = new browser_1.SplitPanel();
         panel.addClass(TreeEditorPanelClass);
-        panel.addWidget(this.treeWidget);
+        console.log('creating view container');
+        const viewContainer = this.treeWidgetContainerFactory({
+            id: `theia-tree-editor--${this.treeWidget.id}`,
+            progressLocationId: 'tree-editor-tree-progress'
+        });
+        viewContainer.setTitleOptions({ label: this.treeHeaderTitle });
+        viewContainer.addWidget(this.treeWidget, this.treeWidgetOptions);
+        panel.addWidget(viewContainer);
         panel.addWidget(this.dataWidget);
         panel.setRelativeSizes([2, 5]);
         return panel;
@@ -90,7 +106,7 @@ let SplitTreeEditor = class SplitTreeEditor extends browser_1.BaseWidget {
 SplitTreeEditor = __decorate([
     (0, inversify_1.injectable)(),
     __metadata("design:paramtypes", [editor_tree_widget_1.EditorTreeWidget,
-        editor_data_widget_1.EditorDataWidget, String])
+        editor_data_widget_1.EditorDataWidget, Function, String])
 ], SplitTreeEditor);
 exports.SplitTreeEditor = SplitTreeEditor;
 //# sourceMappingURL=tree-editor.js.map
