@@ -13,7 +13,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  *******************************************************************************/
 import { BaseWidget, Message, Saveable, SaveableSource, SplitPanel, ViewContainer } from '@theia/core/lib/browser';
-import { Emitter } from '@theia/core/lib/common';
+import { Emitter, ILogger } from '@theia/core/lib/common';
 import { EditorDataWidget } from './editor-data-widget';
 import { EditorTreeWidget } from './editor-tree-widget';
 import { TreeEditorNode } from './types';
@@ -22,6 +22,7 @@ export declare abstract class SplitTreeEditor extends BaseWidget implements Save
     protected readonly treeWidget: EditorTreeWidget;
     protected readonly dataWidget: EditorDataWidget;
     protected readonly treeWidgetContainerFactory: ViewContainer.Factory;
+    protected readonly logger: ILogger;
     readonly widgetId: string;
     private panel;
     protected selectedNode: TreeEditorNode | undefined;
@@ -33,7 +34,7 @@ export declare abstract class SplitTreeEditor extends BaseWidget implements Save
     readonly onDirtyChanged: import("@theia/core/lib/common").Event<void>;
     protected readonly onContentChangedEmitter: Emitter<void>;
     readonly onContentChanged: import("@theia/core/lib/common").Event<void>;
-    constructor(treeWidget: EditorTreeWidget, dataWidget: EditorDataWidget, treeWidgetContainerFactory: ViewContainer.Factory, widgetId: string);
+    constructor(treeWidget: EditorTreeWidget, dataWidget: EditorDataWidget, treeWidgetContainerFactory: ViewContainer.Factory, logger: ILogger, widgetId: string);
     protected instantiateSplitPanel(): SplitPanel;
     protected onAfterAttach(msg: Message): void;
     protected abstract onDataWidgetChange(data: any, node: TreeEditorNode): void;

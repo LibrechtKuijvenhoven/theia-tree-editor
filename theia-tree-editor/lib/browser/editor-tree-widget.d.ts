@@ -16,7 +16,9 @@
 import { ContextMenuRenderer, NodeProps, TreeModel, TreeNode, TreeProps, TreeWidget } from '@theia/core/lib/browser';
 import { TreeEditorNode } from './types';
 import * as React from '@theia/core/shared/react';
+import { ILogger } from '@theia/core';
 export declare abstract class EditorTreeWidget extends TreeWidget {
+    protected readonly logger: ILogger;
     protected _data: any;
     private onDataChangeEmitter;
     protected readonly onDataChange: import("vscode-jsonrpc/lib/common/events").Event<void>;

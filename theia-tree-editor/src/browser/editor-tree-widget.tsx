@@ -17,9 +17,12 @@ import { inject, injectable } from '@theia/core/shared/inversify';
 import { Emitter } from '@theia/core/shared/vscode-languageserver-protocol';
 import { TreeEditorNode } from './types';
 import * as React from '@theia/core/shared/react';
+import { ILogger } from '@theia/core';
 
 @injectable()
 export abstract class EditorTreeWidget extends TreeWidget {
+    @inject(ILogger)
+    protected readonly logger: ILogger;
     protected _data: any;
 
     private onDataChangeEmitter = new Emitter<void>();

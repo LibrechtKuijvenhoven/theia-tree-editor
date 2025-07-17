@@ -54,6 +54,7 @@ const browser_1 = require("@theia/core/lib/browser");
 const inversify_1 = require("@theia/core/shared/inversify");
 const vscode_languageserver_protocol_1 = require("@theia/core/shared/vscode-languageserver-protocol");
 const React = __importStar(require("@theia/core/shared/react"));
+const core_1 = require("@theia/core");
 let EditorTreeWidget = class EditorTreeWidget extends browser_1.TreeWidget {
     constructor(props, model, contextMenuRenderer) {
         super(props, model, contextMenuRenderer);
@@ -86,6 +87,10 @@ let EditorTreeWidget = class EditorTreeWidget extends browser_1.TreeWidget {
         return icon ? React.createElement("div", { className: icon + ' default-file-icon file-icon' }) : undefined;
     }
 };
+__decorate([
+    (0, inversify_1.inject)(core_1.ILogger),
+    __metadata("design:type", Object)
+], EditorTreeWidget.prototype, "logger", void 0);
 EditorTreeWidget = __decorate([
     (0, inversify_1.injectable)(),
     __param(0, (0, inversify_1.inject)(browser_1.TreeProps)),

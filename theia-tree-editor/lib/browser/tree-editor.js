@@ -36,11 +36,12 @@ const TreeEditorPanelClass = 'split-tree-editor-panel';
 const TreeEditorTreeClass = 'split-tree-editor-tree';
 const TreeEditorDataClass = 'split-tree-editor-data';
 let SplitTreeEditor = class SplitTreeEditor extends browser_1.BaseWidget {
-    constructor(treeWidget, dataWidget, treeWidgetContainerFactory, widgetId) {
+    constructor(treeWidget, dataWidget, treeWidgetContainerFactory, logger, widgetId) {
         super();
         this.treeWidget = treeWidget;
         this.dataWidget = dataWidget;
         this.treeWidgetContainerFactory = treeWidgetContainerFactory;
+        this.logger = logger;
         this.widgetId = widgetId;
         this.treeWidgetOptions = {
             order: 0,
@@ -106,7 +107,7 @@ let SplitTreeEditor = class SplitTreeEditor extends browser_1.BaseWidget {
 SplitTreeEditor = __decorate([
     (0, inversify_1.injectable)(),
     __metadata("design:paramtypes", [editor_tree_widget_1.EditorTreeWidget,
-        editor_data_widget_1.EditorDataWidget, Function, String])
+        editor_data_widget_1.EditorDataWidget, Function, Object, String])
 ], SplitTreeEditor);
 exports.SplitTreeEditor = SplitTreeEditor;
 //# sourceMappingURL=tree-editor.js.map

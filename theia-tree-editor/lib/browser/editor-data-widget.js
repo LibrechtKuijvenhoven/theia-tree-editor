@@ -28,6 +28,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EditorDataWidget = void 0;
 /********************************************************************************
@@ -70,6 +73,10 @@ let EditorDataWidget = class EditorDataWidget extends browser_1.ReactWidget {
         return React.createElement(React.Fragment, null, "Please select a node");
     }
 };
+__decorate([
+    (0, inversify_1.inject)(common_1.ILogger),
+    __metadata("design:type", Object)
+], EditorDataWidget.prototype, "logger", void 0);
 EditorDataWidget = __decorate([
     (0, inversify_1.injectable)()
 ], EditorDataWidget);

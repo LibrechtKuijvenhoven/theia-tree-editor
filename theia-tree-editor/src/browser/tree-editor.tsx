@@ -13,7 +13,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  *******************************************************************************/
 import { BaseWidget, Message, Saveable, SaveableSource, SplitPanel, ViewContainer, Widget } from '@theia/core/lib/browser';
-import { Emitter } from '@theia/core/lib/common';
+import { Emitter, ILogger } from '@theia/core/lib/common';
 import { injectable } from '@theia/core/shared/inversify';
 import { debounce, isEqual } from 'lodash';
 import { EditorDataWidget } from './editor-data-widget';
@@ -52,6 +52,7 @@ export abstract class SplitTreeEditor extends BaseWidget implements Saveable, Sa
         protected readonly treeWidget: EditorTreeWidget,
         protected readonly dataWidget: EditorDataWidget,
         protected readonly treeWidgetContainerFactory: ViewContainer.Factory,
+        protected readonly logger: ILogger,
         readonly widgetId: string
     ) {
         super();

@@ -12,9 +12,9 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  *******************************************************************************/
-import { Emitter } from '@theia/core/lib/common';
+import { Emitter, ILogger } from '@theia/core/lib/common';
 import { ReactWidget } from '@theia/core/lib/browser';
-import { injectable } from '@theia/core/shared/inversify';
+import { inject, injectable } from '@theia/core/shared/inversify';
 import * as React from '@theia/core/shared/react';
 import { TreeEditorNode } from './types';
 
@@ -27,6 +27,9 @@ export interface DataTester<T extends TreeEditorNode> {
 
 @injectable()
 export abstract class EditorDataWidget extends ReactWidget {
+    @inject(ILogger)
+    protected readonly logger: ILogger;
+
     protected selectedNode: Readonly<TreeEditorNode>;
 
     updateTreeSelection(selectedNode: Readonly<TreeEditorNode>): void {
