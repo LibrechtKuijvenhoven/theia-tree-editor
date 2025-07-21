@@ -14,3 +14,7 @@
     height: 100%;
     overflow: auto;
 }
+
+.split-tree-editor .lm-SplitPanel-handle::after {
+    background: var(--theia-activityBar-background);
+}
